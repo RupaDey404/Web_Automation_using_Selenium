@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 import javax.swing.*;
 import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumTest {
@@ -77,5 +79,59 @@ public class SeleniumTest {
         System.out.println("successfully searched");
 
         driver.quit();
+    }
+    @Test
+    void LoginPageforTestAutomationSite() throws InterruptedException{
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://nexvat.com/login");
+        Thread.sleep(2000);
+        WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
+        WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
+        WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+        email.sendKeys("****");
+        Thread.sleep(2000);
+        password.sendKeys("****");
+        Thread.sleep(2000);
+        loginBtn.click();
+        Thread.sleep(3000);
+        driver.quit();
+    }
+
+    @Test
+    void loginPageforRadditWebsite() throws InterruptedException{
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+      driver.get("https://www.reddit.com/?feed=home");
+//        https://practicetestautomation.com/practice-test-login/
+        //driver.get("https://practicetestautomation.com/practice-test-login/");
+        Thread.sleep(2000);
+
+//        //For Raddit website -> automated code can not login it.
+//        // to check the iframe list
+//        List<WebElement> iframe = Collections.singletonList(driver.findElement(By.tagName("iframe")));
+//        System.out.println(iframe.size());
+//        for (WebElement frame:iframe)
+//            System.out.println("iframe src : " + frame.getAttribute("src"));
+//-----------------------------------------------------------------
+        WebElement iframe = driver.findElement(By.cssSelector("iframe[src*='login']"));
+        driver.switchTo().frame(iframe);
+        WebElement clickLogin = driver.findElement(By.xpath("//a[@id='login-button']//span[@class='flex items-center gap-xs'][normalize-space()='Log In']"));
+        clickLogin.click();
+        Thread.sleep(1000);
+        //WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
+        //sometimes xpath can not be accessible for specific webelement.
+        WebElement email = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginBtn = driver.findElement(By.xpath("//faceplate-tracker[@data-faceplate-tracking-context='{\"popup\":{\"button_text\":\"login\"}}']//button[@type='button']"));
+        email.sendKeys("****");
+        Thread.sleep(2000);
+        password.sendKeys("****");
+        Thread.sleep(2000);
+        loginBtn.click();
+        Thread.sleep(3000);
+// --------------------------------------------
+        driver.quit();
+
     }
 }
