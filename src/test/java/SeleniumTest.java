@@ -89,11 +89,42 @@ public class SeleniumTest {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("****");
+        email.sendKeys("super@nextpagetl.com");
         Thread.sleep(2000);
-        password.sendKeys("****");
+        password.sendKeys("123123");
         Thread.sleep(2000);
         loginBtn.click();
+        Thread.sleep(3000);
+        driver.manage().window().maximize();
+        WebElement purchase = driver.findElement(By.xpath("//span[@title='Purchase']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(purchase).pause(Duration.ofSeconds(2)).click();
+        actions.pause(Duration.ofSeconds(2)).perform();
+        Thread.sleep(2000);
+        WebElement imports = driver.findElement(By.xpath("//span[normalize-space()='Imports']"));
+        actions.moveToElement(imports).pause(Duration.ofSeconds(2)).click();;
+        actions.pause(Duration.ofSeconds(2)).perform();
+        
+//        actions.pause(Duration.ofSeconds(2)).perform();
+        Thread.sleep(2000);
+//        WebElement purchase = driver.findElement(By.id(""));
+//        purchase.click();
+//        Thread.sleep(2000);
+        driver.quit();
+    }
+
+    @Test
+    void LoginPageDemoSite() throws InterruptedException{
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+        Thread.sleep(2000);
+        WebElement username = driver.findElement(By.xpath("//input[@id='username']"));
+        WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
+        WebElement lgnBtn = driver.findElement(By.xpath("//button[@id='submit']"));
+        username.sendKeys("student");
+        password.sendKeys("Password123");
+        lgnBtn.click();
         Thread.sleep(3000);
         driver.quit();
     }
