@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class SeleniumTest {
     public static WebDriver driver = null;
     @Test
-    void setup() throws InterruptedException {
+    void darazWebsite() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -83,72 +83,7 @@ public class SeleniumTest {
 
         driver.quit();
     }
-    @Test
-    void LoginPageforTestAutomationSite() throws InterruptedException{
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("https://nexvat.com/login");
-        Thread.sleep(2000);
-        WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
-        WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
-        WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("*******");
-        Thread.sleep(2000);
-        password.sendKeys("***");
-        Thread.sleep(2000);
-        loginBtn.click();
-        Thread.sleep(3000);
-        driver.manage().window().maximize();
-        WebElement purchase = driver.findElement(By.xpath("//span[@title='Purchase']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(purchase).pause(Duration.ofSeconds(2)).click();
-//        actions.pause(Duration.ofSeconds(2)).perform();
-        Thread.sleep(2000);
 
-        WebElement imports = driver.findElement(By.xpath("//span[normalize-space()='Imports']"));
-        actions.moveToElement(imports).pause(Duration.ofSeconds(2)).click();;
-        actions.pause(Duration.ofSeconds(2)).perform();
-        Thread.sleep(2000);
-        WebElement newImportVoucher = driver.findElement(By.xpath("//button[normalize-space()='New Import Voucher']"));
-        actions.moveToElement(newImportVoucher).pause(Duration.ofSeconds(2)).click();
-        actions.pause(Duration.ofSeconds(2)).perform();
-        Thread.sleep(2000);
-//        WebElement supplier = driver.findElement(By.xpath("//body/div[@id='root']/div[@class='wrapper vertical-layout theme-primary navbar-floating']/div[@class='app-content content']/div[@class='content-wrapper']/div[@class='card']/div[@class='card-body']/div[@class='table-responsive']/form[@action='#']/div[@class='row']/div[@class='col']/table[@class='reportTable']/thead/tr[1]/td[1]/div[1]/div[1]/div[1]"));
-//        actions.moveToElement(supplier).pause(Duration.ofSeconds(2)).click();
-//        actions.pause(Duration.ofSeconds(2)).perform();
-//        Thread.sleep(2000);
-//-----------------------------party/supplier select from import =>reactbase code
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("div[class*='control']") //which div contains "control"
-        ));
-        dropdown.click();
-
-
-        WebElement supplierOption = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, '-option')])[3]")
-        ));
-        supplierOption.click();
-        Thread.sleep(2000);
-    //-------------------------------------------
-    //custom House method dropdown selection
-        WebElement dropdown2 = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, 'control')])[3]")
-        ));
-        dropdown2.click();
-        WebElement houseOption = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, '-option')])[4]")
-        ));
-        houseOption.click();
-
-
-        //-----------------------getText
-//        actions.pause(Duration.ofSeconds(2)).perform();
-//        WebElement selectedValue = driver.findElement(By.xpath("//div[contains(@class,'css-1uccc91-singleValue')]"));
-//        System.out.println("Selected: " + selectedValue.getText());
-        Thread.sleep(2000);
-        driver.quit();
-    }
 
     @Test
     void LoginPageDemoSite() throws InterruptedException{
@@ -186,10 +121,12 @@ public class SeleniumTest {
         Thread.sleep(2000);
         searchBox.sendKeys("Chocolate");
         Thread.sleep(2000);
+        //Here is click the save button to save the row1.
         WebElement saveBtn = driver.findElement(By.xpath("//button[@id='save_btn']"));
         saveBtn.click();
         Thread.sleep(2000);
 
+        //Here is added row2 and save the button.
         WebElement addBtn = driver.findElement(By.xpath("//button[@id='add_btn']"));
         addBtn.click();
         Thread.sleep(2000);
@@ -197,6 +134,7 @@ public class SeleniumTest {
                 ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='row2']//input[@class='input-field']"))
         );
         inputR2.sendKeys("Burger and Pasta");
+        Thread.sleep(2000);
         WebElement saveBtn2 = driver.findElement(By.xpath("//div[@id='row2']//button[@id='save_btn']"));
         saveBtn2.click();
         Thread.sleep(2000);
