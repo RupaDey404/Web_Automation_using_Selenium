@@ -156,6 +156,8 @@ public class SeleniumTest {
         driver = new ChromeDriver();
         driver.get("https://practicetestautomation.com/practice-test-login/");
         Thread.sleep(2000);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        //login the page
         WebElement username = driver.findElement(By.xpath("//input[@id='username']"));
         WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
         WebElement lgnBtn = driver.findElement(By.xpath("//button[@id='submit']"));
@@ -163,6 +165,41 @@ public class SeleniumTest {
         password.sendKeys("Password123");
         lgnBtn.click();
         Thread.sleep(3000);
+
+        //Click the practice from menubar and click on the testException
+        WebElement practice = driver.findElement(By.xpath("//a[normalize-space()='Practice']"));
+        practice.click();
+        Thread.sleep(2000);
+        WebElement testException = driver.findElement(By.xpath("//a[normalize-space()='Test Exceptions']"));
+        testException.click();
+        Thread.sleep(2000);
+
+        //After clicking the testException, here is clicked the edit button to edit row1 or add row
+        WebElement editBtn = driver.findElement(By.xpath("//button[@id='edit_btn']"));
+        editBtn.click();
+        Thread.sleep(2000);
+        WebElement searchBox = driver.findElement(By.xpath("//input[@value='Pizza']"));
+        //After writing the value you should clear the input field.
+        searchBox.click();
+        searchBox.sendKeys(Keys.CONTROL + "a");
+        searchBox.sendKeys(Keys.DELETE);
+        Thread.sleep(2000);
+        searchBox.sendKeys("Chocolate");
+        Thread.sleep(2000);
+        WebElement saveBtn = driver.findElement(By.xpath("//button[@id='save_btn']"));
+        saveBtn.click();
+        Thread.sleep(2000);
+
+        WebElement addBtn = driver.findElement(By.xpath("//button[@id='add_btn']"));
+        addBtn.click();
+        Thread.sleep(2000);
+        WebElement inputR2 = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='row2']//input[@class='input-field']"))
+        );
+        inputR2.sendKeys("Burger and Pasta");
+        WebElement saveBtn2 = driver.findElement(By.xpath("//div[@id='row2']//button[@id='save_btn']"));
+        saveBtn2.click();
+        Thread.sleep(2000);
         driver.quit();
     }
 
