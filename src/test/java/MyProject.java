@@ -8,11 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class MyProject {
     public static WebDriver driver = null;
     @Test
-    void LoginPageforTestAutomationSite() throws InterruptedException{
+    void nexVatAutomationSite() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://nexvat.com/login");
@@ -20,9 +22,9 @@ public class MyProject {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("*******");
+        email.sendKeys("super@nextpagetl.com");
         Thread.sleep(2000);
-        password.sendKeys("***");
+        password.sendKeys("123123");
         Thread.sleep(2000);
         loginBtn.click();
         Thread.sleep(3000);
@@ -61,20 +63,90 @@ public class MyProject {
         //-------------------------------------------
         //custom House method dropdown selection
         WebElement dropdown2 = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, 'control')])[3]")
+                By.xpath("(//div[contains(@class, 'control')])[2]")
         ));
         dropdown2.click();
         WebElement houseOption = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("(//div[contains(@class, '-option')])[4]")
         ));
         houseOption.click();
+        //---------------------------------------
+        //Country of origin
+        WebElement dropdown3 = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//div[contains(@class, 'control')])[3]")
+        ));
+        dropdown3.click();
+        WebElement country = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//div[contains(@class, '-option')])[13]")
+        ));
+        country.click();
 
+        WebElement vehicleInfo = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='vehicle_info']")
+        ));
+        vehicleInfo.click();
+        vehicleInfo.sendKeys("Dhaka-Metro-A-1206");
+        Thread.sleep(2000);
 
+        WebElement BOE = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='challan_no']")
+        ));
+        BOE.sendKeys("121000098");
+        Thread.sleep(2000);
+
+        WebElement challanTime = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='challan_time']")
+        ));
+        challanTime.click();
+        Thread.sleep(2000);
+
+//        WebElement selectTime = wait.until(ExpectedConditions.elementToBeClickable(
+//                By.xpath("(//div[contains(@class, 'option')])[1]")
+//        ));
+//        selectTime.click();
+        String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+        challanTime.clear();
+        challanTime.sendKeys(currentTime);
+        Thread.sleep(2000);
+
+        WebElement lcNo = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='lc_no']")
+        ));
+        lcNo.sendKeys("2480000001");
+        Thread.sleep(2000);
+
+        WebElement dropdown4 = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//div[contains(@class, 'control')])[4]")
+        ));
+        dropdown4.click();
+        WebElement productImp = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//div[contains(@class, 'option')])[16]")
+        ));
+        productImp.click();
+
+        WebElement saveBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[normalize-space()='Save']")
+        ));
+        saveBtn.click();
+        Thread.sleep(2000);
+
+        WebElement qty = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='details.0.qty']")
+        ));
+        qty.sendKeys("200");
+        Thread.sleep(2000);
+
+        WebElement accessibleVal = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@name='details.0.av']")
+        ));
+        accessibleVal.sendKeys("1250000");
+        saveBtn.click();
+        Thread.sleep(2000);
         //-----------------------getText
 //        actions.pause(Duration.ofSeconds(2)).perform();
 //        WebElement selectedValue = driver.findElement(By.xpath("//div[contains(@class,'css-1uccc91-singleValue')]"));
 //        System.out.println("Selected: " + selectedValue.getText());
-        Thread.sleep(2000);
+
         driver.quit();
     }
 }
