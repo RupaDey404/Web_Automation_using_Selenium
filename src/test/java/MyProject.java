@@ -22,9 +22,9 @@ public class MyProject {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("super@nextpagetl.com");
+        email.sendKeys("*****");
         Thread.sleep(2000);
-        password.sendKeys("123123");
+        password.sendKeys("***");
         Thread.sleep(2000);
         loginBtn.click();
         Thread.sleep(3000);
@@ -142,10 +142,22 @@ public class MyProject {
         accessibleVal.sendKeys("1250000");
         saveBtn.click();
         Thread.sleep(2000);
-        //-----------------------getText
-//        actions.pause(Duration.ofSeconds(2)).perform();
-//        WebElement selectedValue = driver.findElement(By.xpath("//div[contains(@class,'css-1uccc91-singleValue')]"));
-//        System.out.println("Selected: " + selectedValue.getText());
+
+        wait.until(ExpectedConditions.urlContains("https://nexvat.com/purchases"));
+        WebElement searchImportList = wait.until(ExpectedConditions.elementToBeClickable(
+             By.xpath("//input[@placeholder='Challan No, Party, Challan Date ']")
+        ));
+        searchImportList.click();
+        searchImportList.sendKeys("2025-08-09");
+        Thread.sleep(2000);
+
+        WebElement searchChallanDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//td[normalize-space()='2025-08-09']")
+        ));
+
+        if(searchChallanDate.isDisplayed())
+            System.out.println("record inserted successfully");
+        else System.out.println("Can not insert the record successfully");
 
         driver.quit();
     }
