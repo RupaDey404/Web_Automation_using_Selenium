@@ -13,6 +13,8 @@ import java.time.format.DateTimeFormatter;
 
 public class MyProject {
     public static WebDriver driver = null;
+    //private Object ImportTestData;
+
     @Test
     void nexVatAutomationSite() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
@@ -22,9 +24,9 @@ public class MyProject {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("super@nextpagetl.com");
+        email.sendKeys("*****");
         Thread.sleep(2000);
-        password.sendKeys("123123");
+        password.sendKeys("***");
         Thread.sleep(2000);
         loginBtn.click();
         Thread.sleep(3000);
@@ -54,9 +56,9 @@ public class MyProject {
         ));
         dropdown.click();
 
-
+        int partyNum = ImportTestData.partyIndex;
         WebElement supplierOption = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, '-option')])[3]")
+                By.xpath("(//div[contains(@class, '-option')])["+partyNum+"]")
         ));
         supplierOption.click();
         Thread.sleep(2000);
@@ -67,7 +69,7 @@ public class MyProject {
         ));
         dropdown2.click();
         WebElement houseOption = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, '-option')])[4]")
+                By.xpath("(//div[contains(@class, '-option')])["+ImportTestData.houseIdex+"]")
         ));
         houseOption.click();
         //---------------------------------------
@@ -77,7 +79,7 @@ public class MyProject {
         ));
         dropdown3.click();
         WebElement country = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, '-option')])[13]")
+                By.xpath("(//div[contains(@class, '-option')])["+ImportTestData.countryIndex+"]")
         ));
         country.click();
 
@@ -85,13 +87,15 @@ public class MyProject {
                 By.xpath("//input[@name='vehicle_info']")
         ));
         vehicleInfo.click();
-        vehicleInfo.sendKeys("Dhaka-Metro-A-1206");
+        vehicleInfo.sendKeys(ImportTestData.vehicleInfo);
         Thread.sleep(2000);
 
         WebElement BOE = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@name='challan_no']")
         ));
-        BOE.sendKeys("121000098");
+//        BOE.sendKeys("121000098");
+        String challanNo = Integer.toString(ImportTestData.ch_num);
+        BOE.sendKeys(challanNo);
         Thread.sleep(2000);
 
 //        WebElement challanTime = wait.until(ExpectedConditions.elementToBeClickable(
@@ -109,10 +113,11 @@ public class MyProject {
 //        challanTime.sendKeys(currentTime);
 //        Thread.sleep(2000);  //Time will be automatically updated
 
-        WebElement lcNo = wait.until(ExpectedConditions.elementToBeClickable(
+        WebElement lcNoField = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@name='lc_no']")
         ));
-        lcNo.sendKeys("2480000001");
+        String lc_no = Integer.toString(ImportTestData.lcNo);
+        lcNoField.sendKeys(lc_no); //sendKeys take string value
         Thread.sleep(2000);
 
         WebElement dropdown4 = wait.until(ExpectedConditions.elementToBeClickable(
@@ -120,8 +125,9 @@ public class MyProject {
         ));
         dropdown4.click();
         WebElement productImp = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//div[contains(@class, 'option')])[16]")
+                By.xpath("(//div[contains(@class, 'option')])["+ImportTestData.productIndex+"]")
         ));
+
         productImp.click();
 
         WebElement saveBtn = wait.until(ExpectedConditions.elementToBeClickable(
@@ -130,16 +136,18 @@ public class MyProject {
         saveBtn.click();
         Thread.sleep(2000);
 
-        WebElement qty = wait.until(ExpectedConditions.elementToBeClickable(
+        WebElement qtyF = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@name='details.0.qty']")
         ));
-        qty.sendKeys("200");
+        String qty = Integer.toString(ImportTestData.getRandomN());
+        qtyF.sendKeys(qty);
         Thread.sleep(2000);
 
         WebElement accessibleVal = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@name='details.0.av']")
         ));
-        accessibleVal.sendKeys("1250000");
+        String av = Integer.toString(ImportTestData.totalP);
+        accessibleVal.sendKeys(av);
         saveBtn.click();
         Thread.sleep(2000);
 
