@@ -22,9 +22,9 @@ public class MyProject {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("*****");
+        email.sendKeys("super@nextpagetl.com");
         Thread.sleep(2000);
-        password.sendKeys("***");
+        password.sendKeys("123123");
         Thread.sleep(2000);
         loginBtn.click();
         Thread.sleep(3000);
@@ -94,20 +94,20 @@ public class MyProject {
         BOE.sendKeys("121000098");
         Thread.sleep(2000);
 
-        WebElement challanTime = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='challan_time']")
-        ));
-        challanTime.click();
-        Thread.sleep(2000);
+//        WebElement challanTime = wait.until(ExpectedConditions.elementToBeClickable(
+//                By.xpath("//input[@name='challan_time']")
+//        ));
+//        challanTime.click();
+//        Thread.sleep(2000);
 
 //        WebElement selectTime = wait.until(ExpectedConditions.elementToBeClickable(
 //                By.xpath("(//div[contains(@class, 'option')])[1]")
 //        ));
 //        selectTime.click();
-        String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
-        challanTime.clear();
-        challanTime.sendKeys(currentTime);
-        Thread.sleep(2000);
+//        String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+//        challanTime.clear();
+//        challanTime.sendKeys(currentTime);
+//        Thread.sleep(2000);  //Time will be automatically updated
 
         WebElement lcNo = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@name='lc_no']")
@@ -148,11 +148,11 @@ public class MyProject {
              By.xpath("//input[@placeholder='Challan No, Party, Challan Date ']")
         ));
         searchImportList.click();
-        searchImportList.sendKeys("2025-08-09");
+        searchImportList.sendKeys("2025-08-12");
         Thread.sleep(2000);
 
         WebElement searchChallanDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//td[normalize-space()='2025-08-09']")
+                By.xpath("//td[normalize-space()='2025-08-12']")
         ));
 
         if(searchChallanDate.isDisplayed())
