@@ -1,25 +1,25 @@
-# Web Automation using Selenium
+### **Web Automation using Selenium**
 Selenium is an open-source tool for automating web browsers. It simulates user actions, such as clicks, typing, and navigation, for testing or repetitive tasks. Selenium supports multiple languages, but I have designed my script using Java. Here is the documented demo site for testing automatically. I have even designed the code script for my company project. Here is some code script for Daraz website.
 
-### Steps of Selenium SetUp: 
-** 1. Download JDK, Apache Maven, Intellij IDE, Chromedriver **
-** 2. Create Java Project **
-** 3. Add selenium dependencies in pom.xml
+### **Steps of Selenium SetUp**
 
+- Download JDK, Apache Maven, Intellij IDE, Chromedriver
+- Create maven Java Project
+- Add selenium dependencies in pom.xml
 ```
-	<dependency>
-            		<groupId>org.seleniumhq.selenium</groupId>
-            		<artifactId>selenium-java</artifactId>
-           		 <version>4.34.0</version>
-	</dependency>
+<dependency>
+            	<groupId>org.seleniumhq.selenium</groupId>
+            	<artifactId>selenium-java</artifactId>
+           	<version>4.34.0</version>
+</dependency>
 ```
-** 4. Run and reload the Maven project.
+- Run and reload the Maven project.
 
-### For the Daraz website: 
+## For the Daraz website:
 1. Here is how I navigated to this software from another software. The opened window can be maximized, minimized, full-screen, etc.
 
-```
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+```console
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         // driver.get("https://www.youtube.com/");
         // Thread.sleep(2000);
 
@@ -28,11 +28,9 @@ Selenium is an open-source tool for automating web browsers. It simulates user a
         //driver.manage().window().maximize();
         Thread.sleep(2000);
 ```
-
 2. Here is how to get the title, click on the daraz home page slider and go to the next page.
-  
-``` 
-       String title = driver.getTitle();
+ ```console
+        String title = driver.getTitle();
         if(title.equalsIgnoreCase("daraz"))
             System.out.println("Title matches");
         else System.out.println(title);
@@ -41,11 +39,11 @@ Selenium is an open-source tool for automating web browsers. It simulates user a
         WebElement slider = driver.findElement(By.cssSelector(".swiper-slide.swiper-slide-active a"));
         slider.click();
         Thread.sleep(2000);
-```
+``` 
+    
 3. Here is how to select the categories from the dropdown list on the Daraz website.
-  
- ``` 
-      //Select the specific category with hover: E.g. category>groceries>breakfast>honey>new page open
+```console
+//Select the specific category with hover: E.g. category>groceries>breakfast>honey>new page open
         WebElement category = driver.findElement(By.cssSelector(".lzd-site-menu-nav-category-text"));
         Actions actions = new Actions(driver);
         actions.moveToElement(category).pause(Duration.ofSeconds(2)).perform();
@@ -66,11 +64,10 @@ Selenium is an open-source tool for automating web browsers. It simulates user a
         actions.moveToElement(honey).click().pause(Duration.ofSeconds(2)).perform();
 
         Thread.sleep(2000);
-
 ```
 4. Here is the search code script for the Daraz website.
-   ```
-	//to clear the search box
+```console
+//to clear the search box
         WebElement searchBox = driver.findElement(By.xpath("//input[@id='q']"));
 	//      searchBox.clear(); -->it does not work successfully.
         searchBox.click();
@@ -86,12 +83,9 @@ Selenium is an open-source tool for automating web browsers. It simulates user a
 
         System.out.println("successfully searched");
 ```
-
-### For Practice Test Automation Site:
-Here is the site URL (https://practicetestautomation.com/practice-test-login/) to perform the test automation. 
-
-```
-       void LoginPageDemoSite() throws InterruptedException{
+### **For Practice Test Automation Site:**
+```console
+void LoginPageDemoSite() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://practicetestautomation.com/practice-test-login/");
@@ -144,5 +138,6 @@ Here is the site URL (https://practicetestautomation.com/practice-test-login/) t
     }
 
 ```
-### Here is added the video: How to handle automated software.
-https://www.loom.com/share/2288e180562d4fdc9e98387e755d82cf?sid=1810fa85-e6d2-4070-a861-6a239c4ae301
+
+## Here is added the video: How to handle automated software.
+https://www.loom.com/share/2288e180562d4fdc9e98387e755d82cf?sid=16b766e5-5971-4fd3-81a7-36e34e4c6c62
