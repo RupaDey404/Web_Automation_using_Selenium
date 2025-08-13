@@ -1,3 +1,5 @@
+package nexVatAutomation;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,25 +10,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-public class MyProject {
+public class MyProjct_NexVat {
     public static WebDriver driver = null;
-    //private Object ImportTestData;
+
+    //private Object nexVatAutomation.ImportTestData;
 
     @Test
-    void nexVatAutomationSite() throws InterruptedException{
+    void ImportModuleAutomation() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         driver.get("https://nexvat.com/login");
         Thread.sleep(2000);
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("*****");
+        email.sendKeys("super@nextpagetl.com");
         Thread.sleep(2000);
-        password.sendKeys("***");
+        password.sendKeys("123123");
         Thread.sleep(2000);
         loginBtn.click();
         Thread.sleep(3000);
@@ -45,12 +47,9 @@ public class MyProject {
         actions.moveToElement(newImportVoucher).pause(Duration.ofSeconds(2)).click();
         actions.pause(Duration.ofSeconds(2)).perform();
         Thread.sleep(2000);
-//        WebElement supplier = driver.findElement(By.xpath("//body/div[@id='root']/div[@class='wrapper vertical-layout theme-primary navbar-floating']/div[@class='app-content content']/div[@class='content-wrapper']/div[@class='card']/div[@class='card-body']/div[@class='table-responsive']/form[@action='#']/div[@class='row']/div[@class='col']/table[@class='reportTable']/thead/tr[1]/td[1]/div[1]/div[1]/div[1]"));
-//        actions.moveToElement(supplier).pause(Duration.ofSeconds(2)).click();
-//        actions.pause(Duration.ofSeconds(2)).perform();
-//        Thread.sleep(2000);
+
 //-----------------------------party/supplier select from import =>reactbase code
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(
                 By.cssSelector("div[class*='control']") //which div contains "control"
         ));
@@ -156,11 +155,14 @@ public class MyProject {
              By.xpath("//input[@placeholder='Challan No, Party, Challan Date ']")
         ));
         searchImportList.click();
-        searchImportList.sendKeys("2025-08-12");
-        Thread.sleep(2000);
+
+        String currentDate = ImportTestData.date ;
+        searchImportList.sendKeys(currentDate);
+        Thread.sleep(5000);
+
 
         WebElement searchChallanDate = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//td[normalize-space()='2025-08-12']")
+                By.xpath("//td[normalize-space()='"+currentDate+"']")
         ));
 
         if(searchChallanDate.isDisplayed())
@@ -169,4 +171,70 @@ public class MyProject {
 
         driver.quit();
     }
+
+    @Test
+    void LocalPurchaseAutomation() throws InterruptedException{
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        driver.get("https://nexvat.com/login");
+        Thread.sleep(2000);
+        WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
+        WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
+        WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+        email.sendKeys("super@nextpagetl.com");
+        Thread.sleep(2000);
+        password.sendKeys("123123");
+        Thread.sleep(2000);
+        loginBtn.click();
+        Thread.sleep(3000);
+        driver.manage().window().maximize();
+        WebElement purchase = driver.findElement(By.xpath("//span[@title='Purchase']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(purchase).pause(Duration.ofSeconds(2)).click();
+//        actions.pause(Duration.ofSeconds(2)).perform();
+        Thread.sleep(2000);
+
+        driver.quit();
+    }
+
+    @Test
+    void login() throws InterruptedException{
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.login();
+
+        WebDriver driver = LoginPage.driver;
+        driver.manage().window().maximize();
+
+        Actions actions = new Actions(driver);
+//        WebElement purchase = driver.findElement(By.xpath("//span[@title='Purchase']"));
+//        actions.moveToElement(purchase).pause(Duration.ofSeconds(2)).click();
+//        actions.pause(Duration.ofSeconds(2)).perform();
+//        String path = "//span[@title='Purchase']";
+        selectWebElement element = new selectWebElement();
+        element.selectElement(driver,actions,ImportTestData.path1);
+        Thread.sleep(2000);
+//        WebElement imports = driver.findElement(By.xpath("//span[normalize-space()='Imports']"));
+//
+//        actions.moveToElement(imports).pause(Duration.ofSeconds(2)).click();
+//        actions.pause(Duration.ofSeconds(2)).perform();
+        element.selectElement(driver,actions,ImportTestData.path2);
+        Thread.sleep(2000);
+//        WebElement newImportVoucher = driver.findElement(By.xpath("//button[normalize-space()='New Import Voucher']"));
+//        actions.moveToElement(newImportVoucher).pause(Duration.ofSeconds(2)).click();
+//        actions.pause(Duration.ofSeconds(2)).perform();
+        element.selectElement(driver,actions,ImportTestData.path3);
+        Thread.sleep(2000);
+
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        DropDown dropdown = new DropDown();
+
+        int partyNum = ImportTestData.partyIndex;
+        dropdown.selectDropDown(driver, wait,1,partyNum);
+        dropdown.selectDropDown(driver,wait,2,ImportTestData.houseIdex);
+        dropdown.selectDropDown(driver,wait,3,ImportTestData.countryIndex);
+        dropdown.selectDropDown(driver,wait,4,ImportTestData.productIndex);
+    }
+
 }
