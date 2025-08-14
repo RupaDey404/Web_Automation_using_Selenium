@@ -27,16 +27,9 @@ public class ImportModule {
         element.selectElement(driver,actions,ImportTestData.path1);
         Thread.sleep(2000);
 
-
-//        WebElement imports = driver.findElement(By.xpath("//span[normalize-space()='Imports']"));
-//
-//        actions.moveToElement(imports).pause(Duration.ofSeconds(2)).click();
-//        actions.pause(Duration.ofSeconds(2)).perform();
         element.selectElement(driver,actions,ImportTestData.path2);
         Thread.sleep(2000);
-//        WebElement newImportVoucher = driver.findElement(By.xpath("//button[normalize-space()='New Import Voucher']"));
-//        actions.moveToElement(newImportVoucher).pause(Duration.ofSeconds(2)).click();
-//        actions.pause(Duration.ofSeconds(2)).perform();
+
         element.selectElement(driver,actions,ImportTestData.path3);
         Thread.sleep(2000);
 
@@ -48,58 +41,36 @@ public class ImportModule {
         dropdown.selectDropDown(driver,wait,3,ImportTestData.countryIndex);
         dropdown.selectDropDown(driver,wait,4,ImportTestData.productIndex);
 
-        WebElement vehicleInfo = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='vehicle_info']")
-        ));
-        vehicleInfo.click();
-        vehicleInfo.sendKeys(ImportTestData.vehicleInfo);
+        element.writeElement(driver,wait,ImportTestData.vehicle_path).sendKeys(ImportTestData.vehicleInfo);
+
         Thread.sleep(2000);
 
-        WebElement BOE = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='challan_no']")
-        ));
-//        BOE.sendKeys("121000098");
         String challanNo = Integer.toString(ImportTestData.ch_num);
-        BOE.sendKeys(challanNo);
+        element.writeElement(driver,wait,ImportTestData.challan_path).sendKeys(challanNo);
+
         Thread.sleep(2000);
 
-        WebElement lcNoField = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='lc_no']")
-        ));
         String lc_no = Integer.toString(ImportTestData.lcNo);
-        lcNoField.sendKeys(lc_no); //sendKeys take string value
+        element.writeElement(driver,wait,ImportTestData.lc_path).sendKeys(lc_no);
         Thread.sleep(2000);
 
-
-        WebElement saveBtn = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[normalize-space()='Save']")
-        ));
-        saveBtn.click();
+        element.clickButton(driver,wait,ImportTestData.save_btn_path);
         Thread.sleep(2000);
 
-        WebElement qtyF = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='details.0.qty']")
-        ));
         String qty = Integer.toString(ImportTestData.getRandomN());
-        qtyF.sendKeys(qty);
+        element.writeElement(driver,wait,ImportTestData.qty_path).sendKeys(qty);
         Thread.sleep(2000);
 
-        WebElement accessibleVal = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@name='details.0.av']")
-        ));
         String av = Integer.toString(ImportTestData.totalP);
-        accessibleVal.sendKeys(av);
-        saveBtn.click();
+        element.writeElement(driver,wait,ImportTestData.av_path).sendKeys(av);
+
+        element.clickButton(driver,wait,ImportTestData.save_btn_path);
         Thread.sleep(2000);
 
         wait.until(ExpectedConditions.urlContains("https://nexvat.com/purchases"));
-        WebElement searchImportList = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@placeholder='Challan No, Party, Challan Date ']")
-        ));
-        searchImportList.click();
 
         String currentDate = ImportTestData.date ;
-        searchImportList.sendKeys(currentDate);
+        element.writeElement(driver,wait,ImportTestData.search_path).sendKeys(currentDate);
         Thread.sleep(5000);
 
 
@@ -113,5 +84,7 @@ public class ImportModule {
 
         driver.quit();
     }
+
+
 
 }

@@ -12,6 +12,13 @@ public class ImportTestData {
     public static  final String path2 = "//span[normalize-space()='Imports']";
     public static final String path3 = "//button[normalize-space()='New Import Voucher']";
 
+    public static final String vehicle_path = "//input[@name='vehicle_info']";
+    public static final String lc_path = "//input[@name='lc_no']" ;
+    public static final String challan_path = "//input[@name='challan_no']";
+    public static final String save_btn_path = "//button[normalize-space()='Save']";
+    public static final String qty_path = "//input[@name='details.0.qty']";
+    public static final String av_path ="//input[@name='details.0.av']";
+    public static final String search_path = "//input[@placeholder='Challan No, Party, Challan Date ']";
 
     static Random random = new Random();
     static int ch_num = random.nextInt(9999999);
@@ -27,7 +34,7 @@ public class ImportTestData {
 
     static int houseIdex = random.nextInt(10);
 
-    static int productIndex = random.nextInt(15);
+    static int productIndex = random.nextInt(12);
 
     static int lcNo = random.nextInt(1000000);
 

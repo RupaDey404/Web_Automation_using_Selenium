@@ -23,7 +23,7 @@ public class LoginPage {
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
         WebElement loginBtn = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
-        email.sendKeys("****");
+        email.sendKeys("********");
         Thread.sleep(2000);
         password.sendKeys("***");
         Thread.sleep(2000);
