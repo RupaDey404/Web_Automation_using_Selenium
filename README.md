@@ -289,6 +289,6 @@ Here is the site URL (https://practicetestautomation.com/practice-test-login/) t
     }
 ```
 
-[<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/591a2f91-3aa4-427a-9ff2-0f8107674878" />](https://www.loom.com/share/2288e180562d4fdc9e98387e755d82cf?sid=c82509c5-0f73-4f7d-8102-74637d001eda)
+[<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/591a2f91-3aa4-427a-9ff2-0f8107674878" />](https://www.loom.com/share/2288e180562d4fdc9e98387e755d82cf?sid=70cb85a6-77f7-406c-a810-32b2095b9619)
 
 
