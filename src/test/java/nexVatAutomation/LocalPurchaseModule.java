@@ -65,7 +65,7 @@ public class LocalPurchaseModule {
 
 
         if(searchChallanDate.isDisplayed())
-            System.out.println("record inserted successfully");
+            System.out.println("local purchase record inserted successfully");
         else System.out.println("Can not insert the record successfully");
         driver.quit();
     }
