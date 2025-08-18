@@ -20,9 +20,10 @@ public class DebitNoteTestData {
     public static final String save_path = "//button[normalize-space()='Save']";
 
     static Random random = new Random();
-    static int debitNoteNo = random.nextInt(9999999);
-    static int qty ;
-    static int  rtnQty = random.nextInt(qty%10) ;
+    static int debitNote = random.nextInt(999);
+    public static final String debitNoteNo = debitNote%100 + "000" + debitNote;
+    static int qty,bound ;
+    static int  rtnQty;
     public static final String[] items = {"expire date","Damage material", "Label misprint",
                                         "Damaged packaging", "Customer cancellation", "Wrong batch delivered",
                                         "Seal broken", "Excess moisture detected"};
@@ -32,19 +33,16 @@ public class DebitNoteTestData {
 
 
     public static int getRtnQty() {
-        if( qty>=1 && qty<=10)
-        {
-            if(rtnQty==0) {
-                rtnQty = rtnQty+1;
-            }
-            else if (rtnQty>1)
-                rtnQty = rtnQty-1;
+        bound = qty % 10;
+        if(bound==0) bound = 10;
+        rtnQty = random.nextInt(bound);
 
-        }
         return rtnQty;
     }
+
     @Test
     void testAutomation(){
+        System.out.println("debit note no: "+debitNoteNo);
         System.out.println(reason);
         System.out.println("return qty: "+rtnQty);
         System.out.println(getRtnQty());
