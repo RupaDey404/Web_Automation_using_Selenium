@@ -43,19 +43,20 @@ public class DebitNoteModule {
         element.selectElement(driver,actions,DebitNoteTestData.path3);
 
         element.writeElement(driver,wait,DebitNoteTestData.challan_path).sendKeys(challanCopy);
-        //Thread.sleep(2000);
+        Thread.sleep(2000);
 
-        try {
-            WebDriverWait wait1 = new WebDriverWait(driver,Duration.ofNanos(10));
-            WebElement alert = wait1.until(ExpectedConditions.visibilityOfElementLocated(
+
+
+            WebElement alert = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//div[@class='toast toast-warning']")
             ));
-            String getAlertText = alert.getText();
-            Assert.assertTrue(getAlertText.contains("Already exists a debit note"));
-            System.out.println("This challan has already been issued for debit note");
+            if(alert.isDisplayed()) {
+                String getAlertText = alert.getText();
+                Assert.assertTrue(getAlertText.contains("Already exists a debit note"));
+                System.out.println("This challan has already been issued for debit note");
 
-        }
-        catch (TimeoutException e) {
+            }
+           else  {
 
             element.writeElement(driver, wait, DebitNoteTestData.debitNoteNo_path).sendKeys(DebitNoteTestData.debitNoteNo);
             Thread.sleep(2000);
