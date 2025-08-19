@@ -1,6 +1,7 @@
 package nexVatAutomation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -34,4 +35,13 @@ public class selectWebElement {
 
     }
 
+//    public Boolean  isElementPresent(WebDriver driver, By locator, int timeout){
+//        try {
+//            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+//            shortWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//            return true;
+//        } catch (TimeoutException e) {
+//            return false;
+//        }
+//    }
 }
