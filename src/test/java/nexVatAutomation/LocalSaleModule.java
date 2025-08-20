@@ -30,7 +30,23 @@ public class LocalSaleModule {
         element.selectElement(driver,actions,LocalSaleTestData.localSales_path3);
         Thread.sleep(2000);
         
-        //here
+        //here is started form submit code for this field: party, vehicle info, branch, qty
+        DropDown dropDown = new DropDown();
+        dropDown.selectDropDown(driver,wait,1,LocalSaleTestData.partyIndex);
+//        int br_size = dropDown.lengthDropDown(driver,wait,1);
+        dropDown.selectDropDown(driver,wait,2,LocalSaleTestData.branchIndex);
+//        System.out.println("branch dropdown size: "+br_size);
+        Thread.sleep(2000);
+
+//        int product_size = dropDown.lengthDropDown(driver,wait,2);
+        dropDown.selectDropDown(driver,wait,3,LocalSaleTestData.productIndex);
+//        System.out.println("Product dropdown size: "+product_size);
+        Thread.sleep(2000);
+
+        element.writeElement(driver,wait,LocalSaleTestData.vehiclePath).sendKeys(LocalSaleTestData.vehicleInfo);
+        String qty = Integer.toString(LocalSaleTestData.getRandomN());
+        element.writeElement(driver,wait,LocalSaleTestData.qtyPath).sendKeys(qty);
+        Thread.sleep(2000);
         driver.quit();
     }
 }
