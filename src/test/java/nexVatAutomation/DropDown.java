@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class DropDown {
 
@@ -29,5 +30,16 @@ public class DropDown {
 
 
         return dropdownSize.size();
+    }
+    public String getProductRcvInd(WebDriver driver, WebDriverWait wait, String name){
+        List<WebElement> rows = driver.findElements(By.xpath("//table[@class='table']/tbody/tr"));
+        Random random = new Random();
+        int index = random.nextInt(rows.size())+1;
+        List<WebElement> names = driver.findElements(
+                By.xpath("//table[@class='table']/tbody/tr/td[2]"));
+
+        List<WebElement> options = driver.findElements(By.xpath("//div[contains(@class, '-control')]"));
+
+        return names.get(index).getText();
     }
 }

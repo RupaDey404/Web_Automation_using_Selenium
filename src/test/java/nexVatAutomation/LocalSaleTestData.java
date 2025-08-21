@@ -6,10 +6,12 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class LocalSaleTestData {
+    public static String inventory_path = "//span[@title='Inventories']";
+    public static String rcv_path = "//span[normalize-space()='Products Receive']";
     public static String localSales_path1 = "(//div[@class='menu-text'])[14]";
     public static String localSale_path2 = "//span[normalize-space()='Local Sales']";
     public static String localSales_path3 = "//button[normalize-space()='New Local Sales Voucher']";
-
+    public static String product_path = "//div[contains(@class, '-container')]";
     public static String vehiclePath = "//input[@name='vehicle_info']";
     public static String qtyPath = "//input[@name='details.0.qty']";
 
@@ -39,6 +41,7 @@ public class LocalSaleTestData {
         index = random.nextInt(size)+1;
         return index;
     }
+
 
     @Test
     void TestAutomation(){
