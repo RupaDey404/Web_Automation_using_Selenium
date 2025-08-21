@@ -20,7 +20,7 @@ public class LocalSaleTestData {
     static int partyIndex = random.nextInt(10)+1;
 
 
-    static int branchIndex = random.nextInt(3)+1 ;
+    static int index;
     static int productIndex = random.nextInt(10)+1;
     static int bound =10;
 
@@ -33,6 +33,11 @@ public class LocalSaleTestData {
         else qty = randomN - randomN%5;
 
         return qty;
+    }
+
+    public static int dropdownIndex(int size){
+        index = random.nextInt(size)+1;
+        return index;
     }
 
     @Test
