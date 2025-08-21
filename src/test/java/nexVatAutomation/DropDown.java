@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class DropDown {
 
@@ -14,10 +16,18 @@ public class DropDown {
         WebElement dropdown2 = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("(//div[contains(@class, '-control')])["+dropdownInd+"]")
         ));
+
         dropdown2.click();
         WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("(//div[contains(@class, '-option')])["+optionInd+"]")
         ));
         option.click();
+    }
+    public int lengthDropDown(WebDriver  driver, WebDriverWait wait, int dropdownInd){
+        List<WebElement> dropdownSize = driver.findElements(
+                By.xpath("(//div[contains(@class, '-control')])["+dropdownInd+"]"));
+
+
+        return dropdownSize.size();
     }
 }
