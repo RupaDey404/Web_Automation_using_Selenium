@@ -36,10 +36,15 @@ public class ImportModule {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         DropDown dropdown = new DropDown();
 
-        dropdown.selectDropDown(driver, wait,1,ImportTestData.partyIndex);
-        dropdown.selectDropDown(driver,wait,2,ImportTestData.houseIdex);
-        dropdown.selectDropDown(driver,wait,3,ImportTestData.countryIndex);
-        dropdown.selectDropDown(driver,wait,4,ImportTestData.productIndex);
+        int partyIndex = dropdown.lengthDropDown(driver, wait, 1);
+        int houseIndex = dropdown.lengthDropDown(driver, wait, 2);
+        int countryIndex = dropdown.lengthDropDown(driver, wait, 3);
+        int productIndex = dropdown.lengthDropDown(driver, wait, 4);
+
+        dropdown.selectDropDown(driver, wait,1,ImportTestData.dropdownIndex(partyIndex));
+        dropdown.selectDropDown(driver,wait,2,ImportTestData.dropdownIndex(houseIndex));
+        dropdown.selectDropDown(driver,wait,3,ImportTestData.dropdownIndex(countryIndex));
+        dropdown.selectDropDown(driver,wait,4,ImportTestData.dropdownIndex(productIndex));
 
         element.writeElement(driver,wait,ImportTestData.vehicle_path).sendKeys(ImportTestData.vehicleInfo);
 
