@@ -32,15 +32,13 @@ public class LocalSaleModule {
         
         //here is started form submit code for this field: party, vehicle info, branch, qty
         DropDown dropDown = new DropDown();
-        dropDown.selectDropDown(driver,wait,1,LocalSaleTestData.partyIndex);
-//        int br_size = dropDown.lengthDropDown(driver,wait,1);
-        dropDown.selectDropDown(driver,wait,2,LocalSaleTestData.branchIndex);
-//        System.out.println("branch dropdown size: "+br_size);
-        Thread.sleep(2000);
+        int partyIndex = dropDown.lengthDropDown(driver,wait,1);
+        int branchIndex = dropDown.lengthDropDown(driver,wait,2);
+        int productIndex = dropDown.lengthDropDown(driver,wait,3);
 
-//        int product_size = dropDown.lengthDropDown(driver,wait,2);
-        dropDown.selectDropDown(driver,wait,3,LocalSaleTestData.productIndex);
-//        System.out.println("Product dropdown size: "+product_size);
+        dropDown.selectDropDown(driver,wait,1,LocalSaleTestData.dropdownIndex(partyIndex));
+        dropDown.selectDropDown(driver,wait,2,LocalSaleTestData.dropdownIndex(branchIndex));
+        dropDown.selectDropDown(driver,wait,3,LocalSaleTestData.dropdownIndex(productIndex));
         Thread.sleep(2000);
 
         element.writeElement(driver,wait,LocalSaleTestData.vehiclePath).sendKeys(LocalSaleTestData.vehicleInfo);
