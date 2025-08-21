@@ -24,17 +24,18 @@ public class ImportTestData {
     static int ch_num = random.nextInt(9999999);
 //    public static final String challanNo = "ch-" + ch_num; //System.currentTimeMillis()%100000;
 
-    static int partyIndex = random.nextInt(10);
+//    static int partyIndex = random.nextInt(10);
     //public static final String partyInd = Integer.toString(partyIndex);
 
     static int vehicleNo = random.nextInt(2000);
     public static final String vehicleInfo = "DHAKA-Metro-A" + vehicleNo;
 
-    static int countryIndex = random.nextInt(50);
+//    static int countryIndex = random.nextInt(50);
 
-    static int houseIdex = random.nextInt(10);
+    //static int houseIdex = random.nextInt(10);
 
-    static int productIndex = random.nextInt(12);
+    //static int productIndex = random.nextInt(12);
+    static int index;
 
     static int lcNo = random.nextInt(1000000);
 
@@ -47,6 +48,11 @@ public class ImportTestData {
         else qty = randomN - randomN%5;
 
         return qty;
+    }
+
+    public static int dropdownIndex(int size){
+        index = random.nextInt(size)+1;
+        return index;
     }
 
     static int totalP = getRandomN()*randomN;
