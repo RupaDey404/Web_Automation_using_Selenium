@@ -38,8 +38,10 @@ public class LocalPurchaseModule {
 
         //-----party/customer and product is select---//
         DropDown dropdown = new DropDown();
-        dropdown.selectDropDown(driver,wait,1,LocalPurchaseTestData.partyIndex);
-        dropdown.selectDropDown(driver,wait,2,LocalPurchaseTestData.productIndex);
+        int partyIndex = dropdown.lengthDropDown(driver,wait,1);
+        int productIndex = dropdown.lengthDropDown(driver,wait,2);
+        dropdown.selectDropDown(driver,wait,1,LocalPurchaseTestData.dropdownIndex(partyIndex));
+        dropdown.selectDropDown(driver,wait,2,LocalPurchaseTestData.dropdownIndex(productIndex));
 
         element.writeElement(driver,wait,LocalPurchaseTestData.challan_path).sendKeys(LocalPurchaseTestData.challanNo);
         element.writeElement(driver,wait,LocalPurchaseTestData.vehicle_path).sendKeys(LocalPurchaseTestData.vehicleInfo);
