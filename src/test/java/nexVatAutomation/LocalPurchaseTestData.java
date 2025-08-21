@@ -32,11 +32,12 @@ public class LocalPurchaseTestData {
     public static final String vehicleInfo = "DHAKA-Metro-A" + vehicleNo;
 
 //    public static final String address = "Uttara,Dhaka";
-
+    static int index;
     static int bin_part1 = 100000000 + random.nextInt(900000000);
     static int bin_part2 = random.nextInt(10000);
 //    public static final String binNo = bin_part1 + "-" + bin_part2;
 
+    //product length niye kaj korte hobe bound ta and same for any bound
     static int productIndex = random.nextInt(12);
 
     static int randomN = random.nextInt(500);
@@ -48,6 +49,11 @@ public class LocalPurchaseTestData {
         else qty = randomN - randomN%5;
 
         return qty;
+    }
+
+    public static int dropdownIndex(int size){
+        index = random.nextInt(size)+1;
+        return index;
     }
 
     static int unitP = randomN;
