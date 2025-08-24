@@ -31,15 +31,52 @@ public class DropDown {
 
         return dropdownSize.size();
     }
-    public String getProductRcvInd(WebDriver driver, WebDriverWait wait, String name){
-        List<WebElement> rows = driver.findElements(By.xpath("//table[@class='table']/tbody/tr"));
+    public String getProductRcvInd(WebDriver driver, WebDriverWait wait, int dropdownInd){
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//table[@class='table']/tbody/tr")));
+        List<WebElement> rows = driver.findElements((By.xpath("//table[@class='table']/tbody/tr")));
         Random random = new Random();
-        int index = random.nextInt(rows.size())+1;
+
         List<WebElement> names = driver.findElements(
                 By.xpath("//table[@class='table']/tbody/tr/td[2]"));
+        int index = random.nextInt(rows.size());
+        if(names.isEmpty()){ throw new RuntimeException("No product is available");}
 
-        List<WebElement> options = driver.findElements(By.xpath("//div[contains(@class, '-control')]"));
 
         return names.get(index).getText();
+//        return names.size();
     }
+
+    public void selectDropDownByName(WebDriver driver, WebDriverWait wait, int dropdownIndex, String name) {
+        // Open dropdown
+        WebElement dropdown = driver.findElement(
+                By.xpath("(//div[contains(@class, '-control')])[" + dropdownIndex + "]"));
+        dropdown.click();
+
+        // Adjust locator (ignore index if menu is detached)
+        By optionsLocator = By.xpath("//div[contains(@class, '-menu')]//div[contains(@class,'-option')]");
+
+        // Longer wait to allow dynamic loading
+        WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        longWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(optionsLocator));
+        longWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(optionsLocator));
+
+        // Fetch options
+        List<WebElement> options = driver.findElements(optionsLocator);
+        boolean found = false;
+        for (WebElement option : options) {
+            String text = option.getText().trim();
+            System.out.println("Option: " + text);
+            if (text.toLowerCase().contains(name.toLowerCase())) {
+                option.click();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new RuntimeException("No option contains: " + name);
+        }
+    }
+
+
 }

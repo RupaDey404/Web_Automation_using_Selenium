@@ -30,7 +30,7 @@ public class LocalSaleModule {
         element.selectElement(driver,actions,LocalSaleTestData.inventory_path);
         element.selectElement(driver,actions,LocalSaleTestData.rcv_path);
         Thread.sleep(2000);
-        String productName = dropDown.getProductRcvInd(driver,wait,2);
+        String productName = dropDown.getProductRcvInd(driver,wait,3);
         System.out.println("ProductName: "+productName);
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
@@ -49,11 +49,11 @@ public class LocalSaleModule {
 
         int partyIndex = dropDown.lengthDropDown(driver,wait,1);
         int branchIndex = dropDown.lengthDropDown(driver,wait,2);
-//        int productIndex = dropDown.getProductRcvInd(driver,wait,3);
+//        String productName = dropDown.getProductRcvInd(driver,wait,3);
 
         dropDown.selectDropDown(driver,wait,1,LocalSaleTestData.dropdownIndex(partyIndex));
         dropDown.selectDropDown(driver,wait,2,LocalSaleTestData.dropdownIndex(branchIndex));
-        dropDown.selectDropDown(driver,wait,3,);
+        dropDown.selectDropDownByName(driver,wait,3,productName);
         Thread.sleep(2000);
 
         List<WebElement> options = driver.findElements(
