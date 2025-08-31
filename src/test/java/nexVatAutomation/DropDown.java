@@ -1,6 +1,7 @@
 package nexVatAutomation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,19 +32,31 @@ public class DropDown {
 
         return dropdownSize.size();
     }
-    public String getProductRcvInd(WebDriver driver, WebDriverWait wait, int dropdownInd){
+    public void getProductRcvInd(WebDriver driver, WebDriverWait wait){
         wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("//table[@class='table']/tbody/tr")));
         List<WebElement> rows = driver.findElements((By.xpath("//table[@class='table']/tbody/tr")));
         Random random = new Random();
 
         List<WebElement> names = driver.findElements(
-                By.xpath("//table[@class='table']/tbody/tr/td[2]"));
+                By.xpath("//table[@class='table']/tbody/tr/td[6]"));
         int index = random.nextInt(rows.size());
-        if(names.isEmpty()){ throw new RuntimeException("No product is available");}
+        WebElement randomRow = rows.get(index);
+        WebElement viewBtn = randomRow.findElement(
+                By.xpath(".//td[last()]/div[@class='data-list-action']/a")
+        );
+
+        viewBtn.click();
+        WebElement viewForm =wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='card']")
+        ));
+        viewForm.click();
 
 
-        return names.get(index).getText();
+//        if(names.isEmpty()){ throw new RuntimeException("No product is available");}
+//
+//
+//        return names.get(index).getText();
 //        return names.size();
     }
 
@@ -67,7 +80,8 @@ public class DropDown {
         for (WebElement option : options) {
             String text = option.getText().trim();
             System.out.println("Option: " + text);
-            if (text.toLowerCase().contains(name.toLowerCase())) {
+            String rcvName = name.replaceFirst("^\\d+-","");
+            if (text.toLowerCase().contains(rcvName.toLowerCase())) {
                 option.click();
                 found = true;
                 break;
