@@ -50,7 +50,8 @@ public class DebitNoteModule {
         try {
             WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement alert = wait1.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//div[@class='toast-message']")
+//                    By.xpath("//div[@class='toast-message']")
+                    By.xpath("//div[@role='dialog']")
             ));
 
             String getAlertText = alert.getText().trim();
@@ -78,6 +79,7 @@ public class DebitNoteModule {
             Thread.sleep(2000);
 
             wait.until(ExpectedConditions.urlContains("https://nexvat.com/debit-notes"));
+//          wait.until(ExpectedConditions.urlContains("http://localhost:3000/debit-notes"));
             Thread.sleep(2000);
 
             WebElement debitNoteElement = driver.findElement(
