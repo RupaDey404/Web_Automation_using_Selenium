@@ -19,22 +19,25 @@ public class ImportTestData {
     public static final String qty_path = "//input[@name='details.0.qty']";
     public static final String av_path ="//input[@name='details.0.av']";
     public static final String search_path = "//input[@placeholder='Challan No, Party, Challan Date ']";
+    public static final String reason_path = "//input[@name='details.0.remarks']";
+    public static final String house_path = "//input[@name='custom_house_code']";
 
     static Random random = new Random();
     static int ch_num = random.nextInt(9999999);
-//    public static final String challanNo = "ch-" + ch_num; //System.currentTimeMillis()%100000;
+    public static final String boe = "100000" + System.currentTimeMillis()%10000;
 
-    static int partyIndex = random.nextInt(10);
+    public static final String reason = "Imported";
+    static int partyIndex = random.nextInt(10)+1;
     //public static final String partyInd = Integer.toString(partyIndex);
 
     static int vehicleNo = random.nextInt(2000);
     public static final String vehicleInfo = "DHAKA-Metro-A" + vehicleNo;
 
-    static int countryIndex = random.nextInt(50);
+    static int countryIndex = random.nextInt(50)+1;
 
-    static int houseIdex = random.nextInt(10);
+    static int houseIdex = random.nextInt(10)+1;
 
-    static int productIndex = random.nextInt(12);
+    static int productIndex = random.nextInt(12)+1;
     static int index;
 
     static int lcNo = random.nextInt(1000000);
@@ -68,7 +71,9 @@ public class ImportTestData {
     void testAutomation(){
         //it shows unique time stamp after every Milli seconds. it contains 13 digits more
         System.out.println(System.currentTimeMillis());
-
+        System.out.println(partyIndex);
+        System.out.println(productIndex);
+        System.out.println(countryIndex);
         int qty = getRandomN();
         int totalPrice = qty*totalP;
         System.out.println(qty);

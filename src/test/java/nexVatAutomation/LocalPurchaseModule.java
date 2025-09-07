@@ -3,7 +3,6 @@ package nexVatAutomation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,7 +12,7 @@ import java.time.Duration;
 
 public class LocalPurchaseModule {
 
-    @Test
+    @Test(invocationCount = 1)
     void LocalPurchaseAutomation() throws InterruptedException {
         WebDriver driver = null;
         LoginPage loginPage = new LoginPage();
@@ -40,8 +39,8 @@ public class LocalPurchaseModule {
         DropDown dropdown = new DropDown();
         int partyIndex = dropdown.lengthDropDown(driver,wait,1);
         int productIndex = dropdown.lengthDropDown(driver,wait,2);
-        dropdown.selectDropDown(driver,wait,1,LocalPurchaseTestData.dropdownIndex(partyIndex));
-        dropdown.selectDropDown(driver,wait,2,LocalPurchaseTestData.dropdownIndex(productIndex));
+        dropdown.selectDropDown(driver,wait,1,LocalPurchaseTestData.partyIndex);
+        dropdown.selectDropDown(driver,wait,2,LocalPurchaseTestData.productIndex);
 
         element.writeElement(driver,wait,LocalPurchaseTestData.challan_path).sendKeys(LocalPurchaseTestData.challanNo);
         element.writeElement(driver,wait,LocalPurchaseTestData.vehicle_path).sendKeys(LocalPurchaseTestData.vehicleInfo);
@@ -54,6 +53,7 @@ public class LocalPurchaseModule {
         String unitP = Integer.toString(LocalPurchaseTestData.unitP);
         element.writeElement(driver,wait,LocalPurchaseTestData.unitP_path).sendKeys(unitP);
         Thread.sleep(2000);
+        element.writeElement(driver,wait,LocalPurchaseTestData.reason_path).sendKeys(LocalPurchaseTestData.reason);
         element.clickButton(driver,wait,LocalPurchaseTestData.save_btn_path);
         Thread.sleep(2000);
 

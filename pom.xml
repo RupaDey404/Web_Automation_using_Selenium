@@ -23,6 +23,20 @@
             <artifactId>selenium-java</artifactId>
             <version>4.34.0</version>
         </dependency>
+
+            <dependency>
+                <groupId>io.github.bonigarcia</groupId>
+                <artifactId>webdrivermanager</artifactId>
+                <version>5.9.2</version>
+            </dependency>
+
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version> <!-- latest stable version -->
+        </dependency>
+
+
     </dependencies>
     <properties>
         <maven.compiler.source>24</maven.compiler.source>

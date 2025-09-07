@@ -78,8 +78,8 @@ public class DebitNoteModule {
             element.clickButton(driver, wait, DebitNoteTestData.save_path);
             Thread.sleep(2000);
 
-            wait.until(ExpectedConditions.urlContains("https://nexvat.com/debit-notes"));
-//          wait.until(ExpectedConditions.urlContains("http://localhost:3000/debit-notes"));
+//            wait.until(ExpectedConditions.urlContains("https://nexvat.com/debit-notes"));
+          wait.until(ExpectedConditions.urlContains("http://localhost:3000/debit-notes"));
             Thread.sleep(2000);
 
             WebElement debitNoteElement = driver.findElement(

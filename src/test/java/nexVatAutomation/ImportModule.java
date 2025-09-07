@@ -3,7 +3,6 @@ package nexVatAutomation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +13,7 @@ import java.time.Duration;
 public class ImportModule {
 
     @Test
-    void ImportModuleAutomation() throws InterruptedException{
+    public void ImportModuleAutomation() throws InterruptedException{
         LoginPage loginPage = new LoginPage();
         loginPage.login();
 
@@ -36,21 +35,26 @@ public class ImportModule {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         DropDown dropdown = new DropDown();
 
-        int partyIndex = dropdown.lengthDropDown(driver, wait, 1);
-        int houseIndex = dropdown.lengthDropDown(driver, wait, 2);
-        int countryIndex = dropdown.lengthDropDown(driver, wait, 3);
-        int productIndex = dropdown.lengthDropDown(driver, wait, 4);
+//        int partyIndex = dropdown.lengthDropDown(driver, wait, 1);
+//        int houseIndex = dropdown.lengthDropDown(driver, wait, 2);
+//        int countryIndex = dropdown.lengthDropDown(driver, wait, 3);
+//        int productIndex = dropdown.lengthDropDown(driver, wait, 4);
+//
+//        System.out.println("party index" + partyIndex);
+//        System.out.println("house index" + houseIndex);
+//        System.out.println("country index" + countryIndex);
+//        System.out.println("product index " + productIndex);
 
-        dropdown.selectDropDown(driver, wait,1,ImportTestData.dropdownIndex(partyIndex));
-        dropdown.selectDropDown(driver,wait,2,ImportTestData.dropdownIndex(houseIndex));
-        dropdown.selectDropDown(driver,wait,3,ImportTestData.dropdownIndex(countryIndex));
-        dropdown.selectDropDown(driver,wait,4,ImportTestData.dropdownIndex(productIndex));
+        dropdown.selectDropDown(driver, wait,1,ImportTestData.dropdownIndex(ImportTestData.partyIndex));
+        dropdown.selectDropDown(driver,wait,2,ImportTestData.dropdownIndex(ImportTestData.houseIdex));
+        dropdown.selectDropDown(driver,wait,3,ImportTestData.dropdownIndex(ImportTestData.countryIndex));
+        dropdown.selectDropDown(driver,wait,4,ImportTestData.dropdownIndex(ImportTestData.productIndex));
 
         element.writeElement(driver,wait,ImportTestData.vehicle_path).sendKeys(ImportTestData.vehicleInfo);
 
         Thread.sleep(2000);
 
-        String challanNo = Integer.toString(ImportTestData.ch_num);
+        String challanNo = ImportTestData.boe;
         element.writeElement(driver,wait,ImportTestData.challan_path).sendKeys(challanNo);
 
         Thread.sleep(2000);
@@ -69,11 +73,14 @@ public class ImportModule {
         String av = Integer.toString(ImportTestData.totalP);
         element.writeElement(driver,wait,ImportTestData.av_path).sendKeys(av);
 
+        element.writeElement(driver,wait,ImportTestData.reason_path).sendKeys(ImportTestData.reason);
+        Thread.sleep(2000);
+
         element.clickButton(driver,wait,ImportTestData.save_btn_path);
         Thread.sleep(2000);
 
-        wait.until(ExpectedConditions.urlContains("https://nexvat.com/purchases"));
-
+//        wait.until(ExpectedConditions.urlContains("https://nexvat.com/purchases"));
+        wait.until(ExpectedConditions.urlContains("http://localhost:3000/purchases"));
         String currentDate = ImportTestData.date ;
         element.writeElement(driver,wait,ImportTestData.search_path).sendKeys(currentDate);
         Thread.sleep(5000);

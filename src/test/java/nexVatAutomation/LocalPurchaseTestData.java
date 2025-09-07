@@ -21,16 +21,18 @@ public class LocalPurchaseTestData {
     public static final String qty_path = "//input[@name='details.0.qty']";
     public static final String unitP_path ="//input[@name='details.0.unit_price']";
     public static final String search_path = "//input[@placeholder='Party, Challan No, Date']";
+    public static final String reason_path = "//input[@name='details.0.remarks']";
 
     static Random random = new Random();
     static int ch_num = random.nextInt(9999999);
-    public static final String challanNo = "ch-" + System.currentTimeMillis()%100000;
+    public static String challanNo = "ch-" + System.currentTimeMillis()%100000;
 //    public static final String contact = "01" + System.currentTimeMillis()%1000000000;
-    static int partyIndex = random.nextInt(10);
+    static int partyIndex = random.nextInt(10)+1;
 
     static int vehicleNo = random.nextInt(2000);
     public static final String vehicleInfo = "DHAKA-Metro-A" + vehicleNo;
 
+    public static final String reason = "Local Purchase";
 //    public static final String address = "Uttara,Dhaka";
     static int index;
     static int bin_part1 = 100000000 + random.nextInt(900000000);
@@ -38,7 +40,7 @@ public class LocalPurchaseTestData {
 //    public static final String binNo = bin_part1 + "-" + bin_part2;
 
     //product length niye kaj korte hobe bound ta and same for any bound
-    static int productIndex = random.nextInt(12);
+    static int productIndex = random.nextInt(10)+1;
 
     static int randomN = random.nextInt(500);
 
@@ -69,6 +71,8 @@ public class LocalPurchaseTestData {
     void testAutomation(){
         //it shows unique time stamp after every Milli seconds. it contains 13 digits more
         System.out.println(System.currentTimeMillis());
+        System.out.println(partyIndex);
+        System.out.println(productIndex);
 //        System.out.println(contact);
         int qty = getRandomN();
         int totalPrice = qty*unitP;
