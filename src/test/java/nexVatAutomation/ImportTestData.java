@@ -26,7 +26,7 @@ public class ImportTestData {
     static int ch_num = random.nextInt(9999999);
     public static final String boe = "100000" + System.currentTimeMillis()%10000;
 
-    public static final String reason = "Imported";
+    public static final String reason = "Imported product";
     static int partyIndex = random.nextInt(10)+1;
     //public static final String partyInd = Integer.toString(partyIndex);
 

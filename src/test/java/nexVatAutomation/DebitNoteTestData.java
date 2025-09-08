@@ -24,7 +24,7 @@ public class DebitNoteTestData {
     public static final String debitNoteNo = debitNote%100 + "000" + debitNote;
     static int qty,bound ;
     static int  rtnQty;
-    public static final String[] items = {"expire date","Damage material", "Label misprint",
+    public static final String[] items = {"Expire Date","Damage Material", "Label misprint",
                                         "Damaged packaging", "Customer cancellation", "Wrong batch delivered",
                                         "Seal broken", "Excess moisture detected"};
 
@@ -36,7 +36,7 @@ public class DebitNoteTestData {
         bound = qty % 10;
         if(bound==0) bound = 10;
         rtnQty = random.nextInt(bound);
-
+        if(rtnQty==0) return rtnQty+1;
         return rtnQty;
     }
 
@@ -44,7 +44,7 @@ public class DebitNoteTestData {
     void testAutomation(){
         System.out.println("debit note no: "+debitNoteNo);
         System.out.println(reason);
-        System.out.println("return qty: "+rtnQty);
-        System.out.println(getRtnQty());
+        System.out.println("return qty: "+getRtnQty());
+        System.out.println();
     }
 }

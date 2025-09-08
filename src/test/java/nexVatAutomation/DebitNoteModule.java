@@ -72,7 +72,10 @@ public class DebitNoteModule {
             Thread.sleep(2000);
             System.out.println("Return qty: " + rtnQty);
 
-            element.writeElement(driver, wait, DebitNoteTestData.reason_path).sendKeys(DebitNoteTestData.reason);
+            WebElement reason = element.writeElement(driver, wait, DebitNoteTestData.reason_path);
+            reason.sendKeys(Keys.CONTROL + "a");
+            reason.sendKeys(Keys.DELETE);
+            reason.sendKeys(DebitNoteTestData.reason);
             Thread.sleep(2000);
 
             element.clickButton(driver, wait, DebitNoteTestData.save_path);
