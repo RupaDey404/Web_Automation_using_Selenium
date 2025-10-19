@@ -1,6 +1,7 @@
 package nexVatAutomation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -73,6 +74,13 @@ public class LocalSaleModule {
         String qty = Integer.toString(LocalSaleTestData.getRandomN(rcvProdQty));
         element.writeElement(driver,wait,LocalSaleTestData.qtyPath).sendKeys(qty);
         Thread.sleep(5000);
+
+
+        WebElement reason = element.writeElement(driver,wait,LocalSaleTestData.reasonPath);
+        reason.sendKeys(Keys.CONTROL + "a");
+        reason.sendKeys(Keys.DELETE);
+        reason.sendKeys(LocalSaleTestData.reason);
+        Thread.sleep(1000);
         element.clickButton(driver,wait,LocalSaleTestData.saveBtnPath);
         Thread.sleep(2000);
 
@@ -89,7 +97,7 @@ public class LocalSaleModule {
 //        if(searchChallanDate.isDisplayed())
 //            System.out.println("local purchase record inserted successfully");
 //        else System.out.println("Can not insert the record successfully");
-        driver.quit();
+//        driver.quit();
 
 
         driver.quit();
